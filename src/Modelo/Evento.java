@@ -2,14 +2,25 @@ package Modelo;
 
 public class Evento {
 	
+	private String NombreEvento;
 	private Integer EdadMinima;
 	private Integer EntradasUsadas;
 	private Integer EntradasVendidas;
 	//private boolean usoEntrada;
-	private String NombreEvento;
 	private boolean EstadoEvento;
 	
+	public Evento ()
+	{
+		
+	}
 	
+	public Evento(String nombreEvento, Integer edadMinima, Integer entradasUsadas, Integer entradasVendidas, boolean estadoEvento) {
+		NombreEvento = nombreEvento;
+		EdadMinima = edadMinima;
+		EntradasUsadas = entradasUsadas;
+		EntradasVendidas = entradasVendidas;
+		EstadoEvento = estadoEvento;
+	}
 	
 	public Integer getEdadMinima() {
 		return EdadMinima;
