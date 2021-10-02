@@ -1,7 +1,10 @@
 package MainPackage;
 
+import java.util.Iterator;
 import java.util.Scanner;
-
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import Modelo.Evento;
 import Modelo.Cliente;
 import Modelo.Vendedor;
@@ -41,7 +44,7 @@ public class MainClass {
 		
 		Vendedor ven[] = new Vendedor[2];
 		
-		for(int i=0;i<ev.length;i++) {
+		for(int i=0;i<ven.length;i++) {
 			System.out.println("Ingresa el Rut del Vendedor");
 			rutVendedor = sc.nextLine();
 			System.out.println("Ingrese el Nombre del Vendedor");
@@ -59,22 +62,65 @@ public class MainClass {
 		String fechaNacimientoCl = "";
 		
 		Cliente cl[] = new Cliente[2];
-		
-		for(int i=0;i<ev.length;i++) {
+		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate Actualidad = LocalDate.now();
+		LocalDate fechaNac;
+		Period periodo;
+		for(int i=0;i<cl.length;i++) {
 			System.out.println("Ingresa el Rut del Cliente");
 			rutCliente = sc.nextLine();
 			System.out.println("Ingrese el Nombre del Cliente");
 			nombreCliente = sc.nextLine();
-			System.out.println("Ingrese el Fecha de Nacimiento del Cliente");
+			System.out.println("Ingrese el Fecha de Nacimiento del Cliente en formato dd/MM/yyyy");
 			fechaNacimientoCl = sc.nextLine();
 			sc.nextLine();
 			
+			fechaNac = LocalDate.parse(fechaNacimientoCl, fmt);
+			periodo = Period.between(fechaNac, Actualidad);
+			System.out.printf("La edad del cliente es: %s años \n",
+			                    periodo.getYears());
 			cl[i] = new Cliente(rutCliente,nombreCliente,fechaNacimientoCl);	
 		}
 		
+		String nombreEventoCliente;
+		String rutClienteEvento;
+		String nombreClienteEvento;
+		String rutVendedorVerificacion;
 		
+		System.out.println("Ingrese su rut: ");
+		rutVendedorVerificacion = sc.nextLine();
+		System.out.println("Ingrese nombre evento: ");
+		nombreEventoCliente = sc.nextLine();
+		System.out.println("Ingrese rut cliente: ");
+		rutClienteEvento = sc.nextLine();
+		System.out.println("Ingrese nombre cliente: ");
+		nombreClienteEvento = sc.nextLine();
 		
+		int Entrada = 0;
 		
+		for (int i=0; i<ev.length; i++) {
+			if (nombreEventoCliente.equals(ev[i].getNombreEvento())) {
+				Entrada = ev[i].getEntradasVendidas()+1;
+				ev[i].setEntradasVendidas(Entrada);
+			}
+			
+		}
+		for(int i=0;i<ev.length;i++) {
+			System.out.println(ev[i].getNombreEvento()+" "+ev[i].getEntradasVendidas());
+		}
+		
+		Entrada = 0;
+		
+		for (int i=0; i<ven.length; i++) {
+			if (rutVendedorVerificacion.equals(ven[i].getRut())) {
+				Entrada = ven[i].getEntradasVendidas()+1;
+				ven[i].setEntradasVendidas(Entrada);
+			}
+			
+		}
+		for(int i=0;i<ev.length;i++) {
+			System.out.println(ven[i].getNombre()+" "+ven[i].getEntradasVendidas());
+		}
 
 		
 		

@@ -11,11 +11,11 @@ public class ConvYearsEdad {
 		// 01/01/2000
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate fechaNac = LocalDate.parse("15/08/1993", fmt);
-		LocalDate ahora = LocalDate.now();
+		LocalDate Actualidad = LocalDate.now();
 
-		Period periodo = Period.between(fechaNac, ahora);
-		System.out.printf("Tu edad es: %s años, %s meses y %s días",
-		                    periodo.getYears(), periodo.getMonths(), periodo.getDays());
+		Period periodo = Period.between(fechaNac, Actualidad);
+		System.out.printf("La edad del cliente es: %s años",
+		                    periodo.getYears());
 	}
 
 }
