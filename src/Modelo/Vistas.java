@@ -2,11 +2,6 @@ package Modelo;
 
 public class Vistas {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 	static void menu() {
 		System.out.println("------------------------------------------------------------");
 		System.out.println("------1 CREAR EVENTO              2 VENTA DE ENTRADAS     ----");
@@ -36,14 +31,14 @@ public class Vistas {
 		System.out.println("----                                                     ---");
 		System.out.println("------------------------------------------------------------");
 	}
-	static void EventoNoCurso(Cliente cliente, Evento evento) {
+	static void EventoNoCurso(String nombre, String rut, String evento) {
 		System.out.println("------------------------------------------------------------");
 		System.out.println("---- USANDO ENTRADA CON CLIENTE                          ---");
-		System.out.println("----    "+ cliente.nombre+ " RUT:"+cliente.rut +"----------");
+		System.out.println("----    "+ nombre+ " RUT:"+ rut +"----------");
 		System.out.println("---- PARA EVENTO:                                        ---");
-		System.out.println("----    "+ evento.getNombreEvento() +"----------");
+		System.out.println("----    "+ evento +"----------");
 		System.out.println("---- NO SE PUEDE USAR LA ENTRADA PORQUE EL EVENTO        ---");
-		System.out.println("----    "+ evento.getNombreEvento() +"----------");
+		System.out.println("----    "+ evento +"----------");
 		System.out.println("---- NO ESTA EN CURSO                                    ---");
 		System.out.println("------------------------------------------------------------");
 	}
@@ -84,7 +79,7 @@ public class Vistas {
 	
 	
 	
-	}
+}
 	
 	
 
