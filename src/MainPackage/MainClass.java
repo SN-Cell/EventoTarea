@@ -86,7 +86,7 @@ public class MainClass {
 		System.out.println("Ingrese nombre cliente: ");
 		nombreClienteEvento = sc.nextLine();
 		
-		int Entrada;
+		int Entrada = 0;
 		
 		for (int i=0; i<ev.length; i++) {
 			if (nombreEventoCliente.equals(ev[i].getNombreEvento())) {
@@ -99,7 +99,18 @@ public class MainClass {
 			System.out.println(ev[i].getNombreEvento()+" "+ev[i].getEntradasVendidas());
 		}
 		
+		Entrada = 0;
 		
+		for (int i=0; i<ven.length; i++) {
+			if (rutVendedorVerificacion.equals(ven[i].getRut())) {
+				Entrada = ven[i].getEntradasVendidas()+1;
+				ven[i].setEntradasVendidas(Entrada);
+			}
+			
+		}
+		for(int i=0;i<ev.length;i++) {
+			System.out.println(ven[i].getNombre()+" "+ven[i].getEntradasVendidas());
+		}
 		
 		
 		//System.out.println(ev[0].getNombreEvento());
