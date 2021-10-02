@@ -2,10 +2,11 @@ package Modelo;
 
 public class Vistas {
 
-	static void menu() {
+	public static void menu() {
 		System.out.println("--------------------------------------------------------------");
 		System.out.println("------1 CREAR EVENTO              2 VENTA DE ENTRADAS     ----");
-		System.out.println("------3 INGRESO A EVENTO          4 CAMBIO ESTADO EVENTO  ----");
+		System.out.println("------3 REGISTRAR VENDEDOR        4 REGISTRAR CLIENTE     ----");
+		System.out.println("------5 INGRESO A EVENTO          6 CAMBIO ESTADO EVENTO  ----");
 		System.out.println("--------------------------------------------------------------");
 		
 	}
