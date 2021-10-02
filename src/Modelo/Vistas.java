@@ -7,10 +7,11 @@ public class Vistas {
 		System.out.println("------1 CREAR EVENTO              2 VENTA DE ENTRADAS     ----");
 		System.out.println("------3 REGISTRAR VENDEDOR        4 REGISTRAR CLIENTE     ----");
 		System.out.println("------5 INGRESO A EVENTO          6 CAMBIO ESTADO EVENTO  ----");
+		System.out.println("------7 CANTIDAD ENTRADAS VENDIDAS POR VENDEDOR           ----");
 		System.out.println("--------------------------------------------------------------");
 		
 	}
-	static void TipoEntrada() {
+	public static void TipoEntrada() {
 		System.out.println("-------SELECCIONE TIPO DE VENTA QUE DESEA REALIZAR----------");
 		System.out.println("----                                                     ---");
 		System.out.println("----         1 ENTRADA  NORMAL                           ---");
@@ -21,7 +22,7 @@ public class Vistas {
 		System.out.println("------------------------------------------------------------");
 	}
 	
-	static void VentaEntradaTicket(String nombre, String rut, String evento) {
+	public static void VentaEntradaTicket(String nombre, String rut, String evento) {
 		System.out.println("------------------------------------------------------------");
 		System.out.println("---- VENDIENDO ENTRADA A                                 ---");
 		System.out.println("---- CLIENTE:                                            ---");
@@ -31,7 +32,7 @@ public class Vistas {
 		System.out.println("----                                                     ---");
 		System.out.println("------------------------------------------------------------");
 	}
-	static void EventoNoCurso(String nombre, String rut, String evento) {
+	public static void EventoNoCurso(String nombre, String rut, String evento) {
 		System.out.println("------------------------------------------------------------");
 		System.out.println("---- USANDO ENTRADA CON CLIENTE                          ---");
 		System.out.println("----    "+ nombre+ " RUT:"+ rut +"----------");
@@ -42,7 +43,7 @@ public class Vistas {
 		System.out.println("---- NO ESTA EN CURSO                                    ---");
 		System.out.println("------------------------------------------------------------");
 	}
-	static void EventoEnCurso(String nombre, String rut, String evento) {
+	public static void EventoEnCurso(String nombre, String rut, String evento) {
 		System.out.println("------------------------------------------------------------");
 		System.out.println("---- USANDO ENTRADA CON CLIENTE                          ---");
 		System.out.println("----    "+ nombre+ " RUT:"+rut +"----------");
@@ -54,7 +55,7 @@ public class Vistas {
 		System.out.println("------------------------------------------------------------");
 	}
 	
-	static void EntradaUsada(String nombre, String rut, String evento) {
+	public static void EntradaUsada(String nombre, String rut, String evento) {
 		System.out.println("------------------------------------------------------------");
 		System.out.println("---- USANDO ENTRADA CON CLIENTE                          ---");
 		System.out.println("----    "+nombre+ " RUT:"+rut +"----------");
@@ -66,7 +67,7 @@ public class Vistas {
 		System.out.println("------------------------------------------------------------");
 	}
 	
-	static void EntradaVendidas(String nombreV, int CantEntradaN, int CantEntradaVIP) {
+	public static void EntradasVendidas(String nombreV, int CantEntradaN, int CantEntradaVIP) {
 		System.out.println("------------------------------------------------------------");
 		System.out.println("----EL VENDEDOR  "+ nombreV+  " HA VENDIDO: ");   
 		System.out.println("----                                                     ---");

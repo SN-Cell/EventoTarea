@@ -10,7 +10,7 @@ import Modelo.Evento;
 import Modelo.Cliente;
 import Modelo.Vendedor;
 
-
+import Modelo.Vistas;
 public class MainClass {
 
 	public static void main(String[] args) {
@@ -64,7 +64,7 @@ public class MainClass {
 		            
 		            for(int i=0;i<ev.length;i++) {
 		                if(ev[i]!=null) {
-		                    System.out.println(ev[i].getNombreEvento()+" "+ev[i].getEdadMinima()+" ");
+		                    System.out.println((i+1)+") Creando evento "+ev[i].getNombreEvento()+"  Edad minima: "+ev[i].getEdadMinima()+" ");
 		                }else {
 		                    i=ev.length;
 		                }    
@@ -80,14 +80,15 @@ public class MainClass {
 				System.out.println("Ingrese rut cliente: ");
 				rutClienteEvento = sc.nextLine();
 			
-				
 				int Entrada = 0;
 				int Venta = 0;
 				int Diferencia=0;
 				int indice = 0;
+				String designacion=null;
 				for(int j=0;j<cl.length;j++) {
 					if (rutClienteEvento.equals(cl[j].getRut())) {
 						Diferencia=CuentaY(cl[j].getFechaNacimiento());
+						designacion=cl[j].getNombre();
 					}
 				}
 				for (int j=0; j<ven.length; j++) {
@@ -97,8 +98,7 @@ public class MainClass {
 					}	
 				}
 				
-				
-				System.out.println(Diferencia);
+				//System.out.println(Diferencia);
 				
 				for (int i=0; i<ev.length; i++) {
 					if (nombreEventoCliente.equals(ev[i].getNombreEvento())) {
@@ -106,8 +106,7 @@ public class MainClass {
 							Entrada = ev[i].getEntradasVendidas()+1;
 							ev[i].setEntradasVendidas(Entrada);
 							ven[indice].setEntradasVendidas(Venta+1);
-							
-							
+							Modelo.Vistas.VentaEntradaTicket(designacion,rutClienteEvento,  nombreEventoCliente);
 							
 						}else {
 							System.out.println("No cumple edad para asistir a evento");
@@ -118,56 +117,64 @@ public class MainClass {
 					}
 					
 				}
+				
 				for(int i=0;i<ev.length;i++) {
 					System.out.println(ev[i].getNombreEvento()+" "+ev[i].getEntradasVendidas());
 				}
 				
 				Entrada = 0;
 				
-				
-				
 				for(int i=0;i<ev.length;i++) {
 					System.out.println(ven[i].getNombre()+" "+ven[i].getEntradasVendidas());
 				}
 				
 				
-				
 				break;
 			case "3":
 				//Registrar Vendedor
-				
-				for(int i=0;i<ven.length;i++) {
-					System.out.println("Ingresa el Rut del Vendedor");
-					rutVendedor = sc.nextLine();
-					System.out.println("Ingrese el Nombre del Vendedor");
-					nombreVendedor = sc.nextLine();
-					System.out.println("Ingrese el Fecha de Nacimiento del Vendedor");
-					fechaNacimientoVen = sc.nextLine();
-					sc.nextLine();
-					ven[i] = new Vendedor(rutVendedor,nombreVendedor,fechaNacimientoVen,EntradasVendidasVen);	
-				}
+				ven = CrearVendedor(ven);
+				 
+                for (int i = 0; i < ven.length; i++) {
+                    if (ven[i] != null) {
+                        System.out.println(ven[i].getRut() + " " + ven[i].getNombre());
+                    } else {
+                        i = ev.length;
+                    }
+                }
 				
 				break;
 			case "4":
 				//Registrar Cliente
-				
-				for(int i=0;i<cl.length;i++) {
-					System.out.println("Ingresa el Rut del Cliente");
-					rutCliente = sc.nextLine();
-					System.out.println("Ingrese el Nombre del Cliente");
-					nombreCliente = sc.nextLine();
-					System.out.println("Ingrese el Fecha de Nacimiento del Cliente en formato dd/MM/yyyy");
-					fechaNacimientoCl = sc.nextLine();
-					sc.nextLine();
-					cl[i] = new Cliente(rutCliente,nombreCliente,fechaNacimientoCl);	
-				}
-		
-				break;
+				 cl = CrearCliente(cl);
+	                for (int i = 0; i < cl.length; i++) {
+	                    if (cl[i] != null) {
+	                        System.out.println(cl[i].getRut()+" "+cl[i].getNombre());
+	                    } else {
+	                        i = ev.length;
+	                    }
+	                }
+	                break;
 			case "5":
 				//Ingreso a evento
 				break;
 			case "6":
 				//cambio de estado del evento
+				break;
+			case "7":
+				//Cantidad de entradas vendidas
+				System.out.println("Ingrese su rut: ");
+				rutVendedorVerificacion = sc.nextLine();
+				/*for (int i = 0; i < ven.length; i++) {
+                    if (ven[i] != null) {
+                    	if (ven[i]()) {
+                    		 System.out.println(ven[i].getRut() + " " + ven[i].getNombre());
+                    	}
+                       
+                    } else {
+                        i = ev.length;
+                    }
+                }
+				*/
 				break;
 			default:
 				break;
@@ -216,6 +223,49 @@ public class MainClass {
 
 	}
 	
-	
-
+	 public static Vendedor[] CrearVendedor(Vendedor[] ven) {
+	        Scanner sc = new Scanner(System.in);
+	        String rutVendedor = "";
+	        String nombreVendedor = "";
+	        String fechaNacimientoVen = "";
+	        Integer EntradasVendidasVen = 0;
+	        for (int i = 0; i < ven.length; i++) {
+	            if (ven[i] == null) {
+	                System.out.println("Ingresa el Rut del Vendedor");
+	                rutVendedor = sc.nextLine();
+	                System.out.println("Ingrese el Nombre del Vendedor");
+	                nombreVendedor = sc.nextLine();
+	                System.out.println("Ingrese el Fecha de Nacimiento del Vendedor");
+	                fechaNacimientoVen = sc.nextLine();
+	                sc.nextLine();
+	                ven[i] = new Vendedor(rutVendedor, nombreVendedor, fechaNacimientoVen, EntradasVendidasVen);
+	                i = ven.length;
+	            }
+	 
+	        }
+	        return ven;
+	    }
+	 	
+	 
+	 public static Cliente[] CrearCliente(Cliente [] cl) {
+	        Scanner sc = new Scanner(System.in);
+	        String rutCliente = "";
+	        String nombreCliente = "";
+	        String fechaNacimientoCl = "";
+	        for (int i = 0; i < cl.length; i++) {
+	            if (cl[i] == null) {
+	                System.out.println("Ingresa el Rut del Cliente");
+	                rutCliente = sc.nextLine();
+	                System.out.println("Ingrese el Nombre del Cliente");
+	                nombreCliente = sc.nextLine();
+	                System.out.println("Ingrese el Fecha de Nacimiento del Cliente en formato dd/MM/yyyy");
+	                fechaNacimientoCl = sc.nextLine();
+	                sc.nextLine();
+	                cl[i] = new Cliente(rutCliente, nombreCliente, fechaNacimientoCl);
+	                i = cl.length;
+	            }
+	 
+	        }
+	        return cl;
+	    }
 }
