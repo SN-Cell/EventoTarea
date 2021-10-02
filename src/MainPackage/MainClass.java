@@ -22,7 +22,7 @@ public class MainClass {
 		
 		
 		Scanner sc = new Scanner(System.in);
-		Evento ev[] = new Evento[2];
+		Evento ev[] = new Evento[1];
 		
 		for(int i=0;i<ev.length;i++) {
 			System.out.println("Ingresa Nombre del evento");
@@ -42,7 +42,7 @@ public class MainClass {
 		String fechaNacimientoVen = "";
 		Integer EntradasVendidasVen = 0; 
 		
-		Vendedor ven[] = new Vendedor[2];
+		Vendedor ven[] = new Vendedor[1];
 		
 		for(int i=0;i<ven.length;i++) {
 			System.out.println("Ingresa el Rut del Vendedor");
@@ -61,11 +61,8 @@ public class MainClass {
 		String nombreCliente = "";
 		String fechaNacimientoCl = "";
 		
-		Cliente cl[] = new Cliente[2];
-		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate Actualidad = LocalDate.now();
-		LocalDate fechaNac;
-		Period periodo;
+		Cliente cl[] = new Cliente[1];
+		
 		for(int i=0;i<cl.length;i++) {
 			System.out.println("Ingresa el Rut del Cliente");
 			rutCliente = sc.nextLine();
@@ -75,10 +72,7 @@ public class MainClass {
 			fechaNacimientoCl = sc.nextLine();
 			sc.nextLine();
 			
-			fechaNac = LocalDate.parse(fechaNacimientoCl, fmt);
-			periodo = Period.between(fechaNac, Actualidad);
-			System.out.printf("La edad del cliente es: %s años \n",
-			                    periodo.getYears());
+			
 			cl[i] = new Cliente(rutCliente,nombreCliente,fechaNacimientoCl);	
 		}
 		
@@ -97,11 +91,25 @@ public class MainClass {
 		nombreClienteEvento = sc.nextLine();
 		
 		int Entrada = 0;
+		int Diferencia=0;
+		for(int j=0;j<cl.length;j++) {
+			if (rutClienteEvento.equals(cl[j].getRut())) {
+				Diferencia=CuentaY(cl[j].getFechaNacimiento());
+			}
+		}
+		System.out.println(Diferencia);
 		
 		for (int i=0; i<ev.length; i++) {
 			if (nombreEventoCliente.equals(ev[i].getNombreEvento())) {
-				Entrada = ev[i].getEntradasVendidas()+1;
-				ev[i].setEntradasVendidas(Entrada);
+				if (ev[i].getEdadMinima()<=Diferencia) {
+					Entrada = ev[i].getEntradasVendidas()+1;
+					ev[i].setEntradasVendidas(Entrada);
+				}else {
+					System.out.println("No cumple edad para asistir a evento");
+				}
+				
+			}else {
+				System.out.println("No existe el evento");
 			}
 			
 		}
@@ -115,9 +123,9 @@ public class MainClass {
 			if (rutVendedorVerificacion.equals(ven[i].getRut())) {
 				Entrada = ven[i].getEntradasVendidas()+1;
 				ven[i].setEntradasVendidas(Entrada);
-			}
-			
+			}	
 		}
+		
 		for(int i=0;i<ev.length;i++) {
 			System.out.println(ven[i].getNombre()+" "+ven[i].getEntradasVendidas());
 		}
@@ -126,6 +134,17 @@ public class MainClass {
 		
 		//System.out.println(ev[0].getNombreEvento());
 		
+	}
+	public static int CuentaY(String fecha) {
+		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate Actualidad = LocalDate.now();
+		LocalDate fechaNac;
+		Period periodo;
+		fechaNac = LocalDate.parse(fecha, fmt);
+		periodo = Period.between(fechaNac, Actualidad);
+		System.out.printf("La edad del cliente es: %s años \n",
+		                    periodo.getYears());
+		return periodo.getYears();
 	}
 
 }
