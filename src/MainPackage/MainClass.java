@@ -19,18 +19,13 @@ public class MainClass {
 		Evento ev[] = new Evento[30];
 		
 		//Declaraciones del Vendedor
-		String rutVendedor = "";
-		String nombreVendedor = "";
-		String fechaNacimientoVen = "";
-		Integer EntradasVendidasVen = 0; 
-		Vendedor ven[] = new Vendedor[1];
+		
+		Vendedor ven[] = new Vendedor[30];
 		
 		//Declaraciones del Cliente
-		String rutCliente = "";
-		String nombreCliente = "";
-		String fechaNacimientoCl = "";
+	
 		
-		Cliente cl[] = new Cliente[1];
+		Cliente cl[] = new Cliente[30];
 		
 		//Declaracion Venta de entradas
 		String nombreEventoCliente;
@@ -89,45 +84,53 @@ public class MainClass {
 					if (rutClienteEvento.equals(cl[j].getRut())) {
 						Diferencia=CuentaY(cl[j].getFechaNacimiento());
 						designacion=cl[j].getNombre();
+						j = cl.length;
 					}
+					
 				}
 				for (int j=0; j<ven.length; j++) {
 					if (rutVendedorVerificacion.equals(ven[j].getRut())) {
 						Venta = ven[j].getEntradasVendidas();
 						indice = j;
-					}	
+						//j = ven.length;
+					}
+					j = ven.length;
 				}
 				
 				//System.out.println(Diferencia);
 				
-				for (int i=0; i<ev.length; i++) {
-					if (nombreEventoCliente.equals(ev[i].getNombreEvento())) {
-						if (ev[i].getEdadMinima()<=Diferencia) {
-							Entrada = ev[i].getEntradasVendidas()+1;
-							ev[i].setEntradasVendidas(Entrada);
-							ven[indice].setEntradasVendidas(Venta+1);
-							Modelo.Vistas.VentaEntradaTicket(designacion,rutClienteEvento,  nombreEventoCliente);
-							
-						}else {
-							System.out.println("No cumple edad para asistir a evento");
+				for (int i = 0; i < ev.length; i++) {
+					if (ev[i] != null) {
+						if (nombreEventoCliente.equals(ev[i].getNombreEvento())) {
+							if (ev[i].getEdadMinima() <= Diferencia) {
+								Entrada = ev[i].getEntradasVendidas() + 1;
+								ev[i].setEntradasVendidas(Entrada);
+								ven[indice].setEntradasVendidas(Venta + 1);
+								Modelo.Vistas.VentaEntradaTicket(designacion, rutClienteEvento, nombreEventoCliente);
+
+							} else {
+								System.out.println("No cumple edad para asistir a evento");
+							}
+
+						} else {
+							System.out.println("No existe el evento");
 						}
-						
-					}else {
-						System.out.println("No existe el evento");
+					} else {
+						i = ev.length;
 					}
-					
 				}
 				
 				for(int i=0;i<ev.length;i++) {
+					if(ev[i]!=null) {
 					System.out.println(ev[i].getNombreEvento()+" "+ev[i].getEntradasVendidas());
+					} else {
+						i=ev.length;
+					}
 				}
 				
-				Entrada = 0;
+		
 				
-				for(int i=0;i<ev.length;i++) {
-					System.out.println(ven[i].getNombre()+" "+ven[i].getEntradasVendidas());
-				}
-				
+			
 				
 				break;
 			case "3":
@@ -162,19 +165,22 @@ public class MainClass {
 				break;
 			case "7":
 				//Cantidad de entradas vendidas
-				System.out.println("Ingrese su rut: ");
-				rutVendedorVerificacion = sc.nextLine();
-				/*for (int i = 0; i < ven.length; i++) {
-                    if (ven[i] != null) {
-                    	if (ven[i]()) {
-                    		 System.out.println(ven[i].getRut() + " " + ven[i].getNombre());
-                    	}
-                       
-                    } else {
-                        i = ev.length;
-                    }
-                }
-				*/
+				System.out.println("Cantidad de entradas vendidas por evento");
+				for(int i=0;i<ev.length;i++) {
+					if(ev[i]!=null) {
+					System.out.println(ev[i].getNombreEvento()+" "+ev[i].getEntradasVendidas());
+					} else {
+						i=ev.length;
+					}
+				}
+				System.out.println("Cantidad de entradas vendidas por vendedor");
+				for(int i=0;i<ven.length;i++) {
+					if(ven[i]!=null) {
+					System.out.println(ven[i].getNombre()+" "+ven[i].getEntradasVendidas());
+					} else {
+						i=ven.length;
+					}
+				}
 				break;
 			default:
 				break;

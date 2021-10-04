@@ -7,7 +7,7 @@ public class Vistas {
 		System.out.println("------1 CREAR EVENTO              2 VENTA DE ENTRADAS     ----");
 		System.out.println("------3 REGISTRAR VENDEDOR        4 REGISTRAR CLIENTE     ----");
 		System.out.println("------5 INGRESO A EVENTO          6 CAMBIO ESTADO EVENTO  ----");
-		System.out.println("------7 CANTIDAD ENTRADAS VENDIDAS POR VENDEDOR           ----");
+		System.out.println("------                   7 VENTAS                         ----");
 		System.out.println("--------------------------------------------------------------");
 		
 	}
@@ -26,9 +26,9 @@ public class Vistas {
 		System.out.println("------------------------------------------------------------");
 		System.out.println("---- VENDIENDO ENTRADA A                                 ---");
 		System.out.println("---- CLIENTE:                                            ---");
-		System.out.println("----    "+ nombre+ " RUT:"+rut +"----------");
+		System.out.println("----    NOMBRE: "+ nombre+ " RUT :"+rut +"");
 		System.out.println("---- EVENTO:                                             ---");
-		System.out.println("----    "+ evento +"         ----------");
+		System.out.println("----    "+ evento +" ");
 		System.out.println("----                                                     ---");
 		System.out.println("------------------------------------------------------------");
 	}
